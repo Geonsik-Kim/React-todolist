@@ -20,7 +20,7 @@ const App = () => {
       text: "일정 관리 앱 만들어보기",
       checked: false,
     }
-  ])
+  ]);
 
   // 고윳값으로 사용돌 id
   // ref를 사용하여 변수 담기
@@ -44,11 +44,22 @@ const App = () => {
       nextId.current += 1;
     },
     [todos],
-  )
+  );
 
   const onRemove = useCallback(
     id => {
       setTodos(todos.filter(todo => todo.id !== id));
+    },
+    [todos],
+  );
+
+  const onToggle = useCallback(
+    id => {
+      setTodos(
+        todos.map(todo =>
+          todo.id === id ? { ...todo, checked: !todo.checked } : todo,
+        ),
+      )
     },
     [todos],
   )
@@ -56,7 +67,7 @@ const App = () => {
   return (
     <TodoTemplate>
       <TodoInsert onInsert={onInsert} />
-      <TodoList todos={todos} onRemove={onRemove} />
+      <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
     </TodoTemplate>
   )
 }
