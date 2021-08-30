@@ -46,6 +46,13 @@ const App = () => {
     [todos],
   )
 
+  const onRemove = useCallback(
+    id => {
+      setTodos(todos.filter(todo => todo.id !== id));
+    },
+    [todos],
+  )
+
   return (
     <TodoTemplate>
       <TodoInsert onInsert={onInsert} />
