@@ -22,7 +22,7 @@ function todoReducer(todos, action){
       return todos.concat(action.todo);
     case "REMOVE": // 제거
     // { type: "REMOVE", id: 1 }
-      return todos.fileter(todo => todo.id !== action.id);
+      return todos.filter(todo => todo.id !== action.id);
     case "TOGGLE": // 토글
     // { type: "REMOVE", id: 1 }
       return todos.map(todo =>
